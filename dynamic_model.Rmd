@@ -1,11 +1,54 @@
 ---
-title: "Dynamic Models"
-author: "Jaleise Hall"
+title: "Assignment 5 - Dynamic Models"
+author: "Jaleise Hall, Yani Pohl"
 date: "4/28/2021"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(deSolve)
+library(purrr)
 ```
+
+
+```{r}
+
+source("popK_model.R")
+
+#set parameters
+P_inital <- 1
+years <- as.numeric(c(1:50))
+parms <- list(r = 0.05, K = 20)
+
+#apply solver
+ode <- ode(y = P_inital, times = years, func = popK_model, parms = parms)
+
+#create a data frame 
+colnames(ode) <- c("year","pop")
+ode_df <- as.data.frame(ode)
+
+#plot results
+ggplot(ode_df, aes(x = year, y = pop)) +
+  geom_point() +
+  labs(x = "Years",
+       y = "Population",
+       title = "Population Growth Over Time") +
+  theme_linedraw()
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
