@@ -2,7 +2,7 @@
 title: "Assignment 5 - Dynamic Models"
 author: "Jaleise Hall, Yani Pohl"
 date: "4/28/2021"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
